@@ -2,16 +2,16 @@ package bookmodel
 
 import (
 	"time"
-	"versla/util/gorm"
+	"versla/sdk/sdkcm"
 )
 
 type BookCreate struct {
-	gorm.Model
-	Title         string    `json:"title"`
-	Author        string    `json:"author"`
-	PublishedDate time.Time `json:"published_date"`
-	ImageUrl      string    `json:"image_url"`
-	Description   string    `json:"description"`
+	sdkcm.Model
+	Title         string    `json:"title" gorm:"column:title"`
+	Author        string    `json:"author" gorm:"column:author"`
+	PublishedDate time.Time `json:"published_date" gorm:"column:published_date"`
+	ImageUrl      string    `json:"image_url" gorm:"column:image_url"`
+	Description   string    `json:"description" gorm:"column:description"`
 }
 
 func (BookCreate) TableName() string {

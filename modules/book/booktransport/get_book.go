@@ -8,6 +8,7 @@ import (
 	"versla/modules/book/bookhdl"
 	"versla/modules/book/bookrepo"
 	"versla/modules/book/bookstorage"
+	"versla/sdk/sdkcm"
 )
 
 func GetBook(app *app.App) gin.HandlerFunc {
@@ -31,9 +32,6 @@ func GetBook(app *app.App) gin.HandlerFunc {
 			panic(err)
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"status": "OK",
-			"data":   book,
-		})
+		c.JSON(http.StatusOK, sdkcm.SimpleSuccessResponse(book))
 	}
 }
