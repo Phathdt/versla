@@ -19,6 +19,7 @@ func New(app *app.App) *gin.Engine {
 			bookRoute.GET("", booktransport.ListBook(app))
 			bookRoute.POST("", booktransport.CreateBook(app))
 			bookRoute.PUT("/:id", booktransport.UpdateBook(app))
+			bookRoute.DELETE("/:id", booktransport.DeleteBook(app))
 		}
 	}
 
