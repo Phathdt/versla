@@ -3,7 +3,6 @@ package booktransport
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"strconv"
 	"versla/app"
 	"versla/modules/book/bookhdl"
 	"versla/modules/book/bookrepo"
@@ -13,8 +12,7 @@ import (
 
 func GetBook(app *app.App) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		id := c.Param("id")
-		unitId, err := strconv.ParseUint(id, 10, 16)
+		id, err := sdkcm.StrToUint(c.Param("id"))
 
 		if err != nil {
 			panic(err)
@@ -26,7 +24,7 @@ func GetBook(app *app.App) gin.HandlerFunc {
 		repo := bookrepo.NewGetBookRepo(storage)
 		hdl := bookhdl.NewGetBookHdl(repo)
 
-		book, err := hdl.Response(c.Request.Context(), unitId)
+		book, err := hdl.Response(c.Request.Context(), uint32(id))
 
 		if err != nil {
 			panic(err)

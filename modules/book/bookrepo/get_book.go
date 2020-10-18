@@ -19,7 +19,7 @@ func NewGetBookRepo(store GetBookStorage) *getBookRepo {
 	}
 }
 
-func (repo *getBookRepo) GetBookDetail(ctx context.Context, id uint64) (*bookmodel.Book, error) {
+func (repo *getBookRepo) GetBookDetail(ctx context.Context, id uint32) (*bookmodel.Book, error) {
 	book, err := repo.store.GetBookByCondition(ctx, map[string]interface{}{"id": id})
 
 	if err != nil {

@@ -6,7 +6,8 @@ import (
 )
 
 type CreateBookStorage interface {
-	CreateBook(ctx context.Context, data *bookmodel.BookCreate) error
+	CreateBook(ctx context.Context, data *bookmodel.BookCreate) (uint32, error)
+	GetBookByCondition(ctx context.Context, cond map[string]interface{}) (*bookmodel.Book, error)
 }
 
 type createBookRepo struct {
@@ -19,12 +20,18 @@ func NewCreateBookRepo(store CreateBookStorage) *createBookRepo {
 	}
 }
 
-func (repo *createBookRepo) CreateBook(ctx context.Context, data *bookmodel.BookCreate) error {
-	err := repo.store.CreateBook(ctx, data)
+func (repo *createBookRepo) CreateBook(ctx context.Context, data *bookmodel.BookCreate) (*bookmodel.Book, error) {
+	bookID, err := repo.store.CreateBook(ctx, data)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	book, err := repo.store.GetBookByCondition(ctx, map[string]interface{}{"id": bookID})
+
+	if err != nil {
+		return nil, err
+	}
+
+	return book, nil
 }

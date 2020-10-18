@@ -6,7 +6,7 @@ import (
 )
 
 type CreateBookRepo interface {
-	CreateBook(ctx context.Context, data *bookmodel.BookCreate) error
+	CreateBook(ctx context.Context, data *bookmodel.BookCreate) (*bookmodel.Book, error)
 }
 
 type createBookHdl struct {
@@ -19,6 +19,6 @@ func NewCreateBookHdl(repo CreateBookRepo) *createBookHdl {
 	}
 }
 
-func (hdl *createBookHdl) Response(ctx context.Context, data *bookmodel.BookCreate) error {
+func (hdl *createBookHdl) Response(ctx context.Context, data *bookmodel.BookCreate) (*bookmodel.Book, error) {
 	return hdl.repo.CreateBook(ctx, data)
 }

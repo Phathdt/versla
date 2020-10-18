@@ -6,7 +6,7 @@ import (
 )
 
 type GetBookRepo interface {
-	GetBookDetail(ctx context.Context, id uint64) (*bookmodel.Book, error)
+	GetBookDetail(ctx context.Context, id uint32) (*bookmodel.Book, error)
 }
 
 type getBookHdl struct {
@@ -19,6 +19,6 @@ func NewGetBookHdl(repo GetBookRepo) *getBookHdl {
 	}
 }
 
-func (hdl *getBookHdl) Response(ctx context.Context, id uint64) (*bookmodel.Book, error) {
+func (hdl *getBookHdl) Response(ctx context.Context, id uint32) (*bookmodel.Book, error) {
 	return hdl.repo.GetBookDetail(ctx, id)
 }

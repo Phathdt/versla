@@ -25,12 +25,12 @@ func CreateBook(app *app.App) gin.HandlerFunc {
 		repo := bookrepo.NewCreateBookRepo(storage)
 		hdl := bookhdl.NewCreateBookHdl(repo)
 
-		err := hdl.Response(c.Request.Context(), &data)
+		book, err := hdl.Response(c.Request.Context(), &data)
 
 		if err != nil {
 			panic(err)
 		}
 
-		c.JSON(http.StatusOK, sdkcm.SimpleSuccessResponse("OK"))
+		c.JSON(http.StatusOK, sdkcm.SimpleSuccessResponse(book))
 	}
 }
