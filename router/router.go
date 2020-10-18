@@ -16,6 +16,7 @@ func New(app *app.App) *gin.Engine {
 		bookRoute := v1.Group("/books")
 		{
 			bookRoute.GET("/:id", booktransport.GetBook(app))
+			bookRoute.POST("/", booktransport.CreateBook(app))
 		}
 	}
 
