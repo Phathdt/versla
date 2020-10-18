@@ -13,8 +13,7 @@ func (storage bookSQLStorage) ListBooksByCondition(
 ) ([]bookmodel.Book, error) {
 	var data []bookmodel.Book
 
-	db := storage.DB.Table(bookmodel.Book{}.TableName()).
-		Where("deleted_at IS NULL")
+	db := storage.DB.Table(bookmodel.Book{}.TableName())
 
 	if f := filter; f != nil {
 		if v := f.Author; v != "" {

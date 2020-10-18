@@ -10,9 +10,7 @@ func (storage *bookSQLStorage) GetBookByCondition(ctx context.Context,
 ) (*bookmodel.Book, error) {
 	var data bookmodel.Book
 
-	err := storage.DB.Where(cond).First(&data).Error
-
-	if err != nil {
+	if err := storage.DB.Table(bookmodel.Book{}.TableName()).Where(cond).First(&data).Error; err != nil {
 		return nil, err
 	}
 

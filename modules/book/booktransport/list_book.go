@@ -19,6 +19,8 @@ func ListBook(app *app.App) gin.HandlerFunc {
 			panic(err)
 		}
 
+		p.FullFill()
+
 		DB := app.DB
 
 		storage := bookstorage.NewBookSQLStorage(DB)

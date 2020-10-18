@@ -20,7 +20,7 @@ type Paging struct {
 
 func (p *Paging) FullFill() {
 	if p.Limit <= 0 {
-		p.Limit = 50
+		p.Limit = 20
 	}
 
 	if p.Page <= 0 {
