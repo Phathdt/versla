@@ -10,15 +10,12 @@ type OrderBy struct {
 }
 
 type Paging struct {
-	Cursor     uint32    `json:"cursor" form:"-"`
-	NextCursor string    `json:"next_cursor" form:"-"`
-	CursorStr  string    `json:"-" form:"cursor"`
-	Limit      int       `json:"limit" form:"limit"`
-	Total      int       `json:"total" form:"-"`
-	Page       int       `json:"page" form:"page"`
-	HasNext    bool      `json:"has_next" form:"-"`
-	OrderBy    string    `json:"-" form:"-"`
-	OB         []OrderBy `json:"-" form:"-"`
+	Limit   int       `json:"limit" form:"limit"`
+	Total   int64     `json:"total" form:"-"`
+	Page    int       `json:"page" form:"page"`
+	HasNext bool      `json:"has_next" form:"-"`
+	OrderBy string    `json:"-" form:"-"`
+	OB      []OrderBy `json:"-" form:"-"`
 }
 
 func (p *Paging) FullFill() {
