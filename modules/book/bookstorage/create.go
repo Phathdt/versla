@@ -5,10 +5,10 @@ import (
 	"versla/modules/book/bookmodel"
 )
 
-func (storage bookSQLStorage) CreateBook(ctx context.Context, data *bookmodel.BookCreate) (uint, error) {
+func (storage bookSQLStorage) CreateBook(ctx context.Context, data *bookmodel.BookCreate) error {
 	if err := storage.DB.Create(data).Error; err != nil {
-		return 0, err
+		return err
 	}
 
-	return data.ID, nil
+	return nil
 }

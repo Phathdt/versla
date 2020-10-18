@@ -32,7 +32,8 @@ func GetBook(app *app.App) gin.HandlerFunc {
 		}
 
 		c.JSON(http.StatusOK, gin.H{
-			"data": book,
+			"status": "OK",
+			"data":   book,
 		})
 	}
 }

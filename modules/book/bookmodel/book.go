@@ -2,8 +2,7 @@ package bookmodel
 
 import (
 	"time"
-
-	"gorm.io/gorm"
+	"versla/util/gorm"
 )
 
 type Book struct {
